@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Dice Game - Play</title>
+        <link rel="stylesheet" href="styles/styles.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <!--
+                    Shows the current round
+                -->
+                <div id="displayRound">
+                    <p>Round: </p>
+                </div>
+
+                <!--
+                    Area to show current rolled dice for both the player and cpu
+                -->
+                <div id="displayDice">
+                    <table>
+                        <tr>
+                            <th colspan="2">
+                                Player's Roll
+                            </th>
+                            <th colspan="2">
+                                computer's Roll
+                            </th>
+                        </tr>
+                        <tr>
+                            <!--
+                                player's dice
+                            -->
+                            <td><img id="playerDice1" src="images/diceValue1.jpg" id="menu-image" alt=""></td>
+                            <td><img id="playerDice2" src="images/diceValue3.jpg" id="menu-image" alt=""></td>
+                            <!--
+                                computer's dice
+                            -->
+                            <td><img id="playerDice1" src="images/diceValue2.jpg" id="menu-image" alt=""></td>
+                            <td><img id="playerDice2" src="images/diceValue4.jpg" id="menu-image" alt=""></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!--
+                    Area to show player and cpu score
+                -->
+                <div class="scoreBox">
+                    <!--
+                        PLayer score area
+                    -->
+                    <table>
+                        <tr>
+                            <th colspan="2">
+                                Player score
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th>current round score</th>
+                            <th>total score</th>
+                        </tr>
+
+                        <tr>
+                            <td id="playerRoundPoints">playerRoundScore</td>
+                            <td id="playerTotalPoints">playerTotalScore</td>
+                        </tr>
+
+                    </table>
+
+                    <!--
+                        Computer score area
+                    -->
+                    <table>
+                        <tr>
+                            <th colspan="2">
+                                CPU score
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th>current round score</th>
+                            <th>total score</th>
+                        </tr>
+
+                        <tr>
+                            <td id="cpuRoundPoints">cpuRoundScore</td>
+                            <td id="cpuTotalPoints">cpuTotalScore</td>
+                        </tr>
+                        
+                    </table>
+                </div>
+
+                <!--
+                    Image to show cpu reaction based on current score
+                -->
+                <img src="images/" id="menu-image" alt="">
+
+                <!--
+                    Text area to get a random cpu banter based on current score
+                -->
+                <p class="banter">
+                    Banter goes here
+                </p>
+
+                <!--
+                    Buttons that allows player to roll the dice or quit the game
+                -->
+                <button id="btn-roll-dice">Roll Dice</button>
+                <button id="btn-quit">Quit</button>
+
+            </header>
+
+            <footer>
+                Peter's Final Project
+            </footer>
+        </div>
+
+        <script src="scripts/dice-game.js"></script>
+    </body>
+</html>

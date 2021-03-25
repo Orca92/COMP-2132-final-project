@@ -1,0 +1,27 @@
+html, body
+{
+    height: 100%;
+}
+
+table, tr, td
+{
+    border:solid;
+    border-color: maroon;
+    text-align: center;
+}
+
+.scorebox
+{
+    background-color:lemonchiffon;
+}
+
+.wrapper
+{
+    background-color:navajowhite;
+    justify-content: center;
+}
+
+#menu-title
+{
+    text-align: center;
+}
