@@ -15,6 +15,13 @@ let dice2Value;
 // game state variables
 let round;
 let quits;
+const roundMax = 3;
+
+// image variables
+const playerDiceImage1 = document.getElementById("playerDice1");
+const playerDiceImage2 = document.getElementById("playerDice2");
+const cpuDiceImage1 = document.getElementById("cpuDice1");
+const cpuDiceImage2 = document.getElementById("cpuDice2");
 
 // round text
 const currentRoundText = document.getElementById("displayRound");
@@ -31,43 +38,44 @@ const btnQuitGame = document.getElementById("btn-quit");
 
 // Starts a new game
 newGame();
-currentRoundText.innerHTML = `Round: ${round}`;
 
 // Game only finishs if all 3 rounds are played, or if player quits midmatch
-if(round <= 3)
+
+//if player rolls the dice
+btnRollDice.onclick = function()
 {
-    //if player rolls the dice
-    btnRollDice.onclick = function()
+    if(round < 3)
     {
         rolldice();
         round++;
-        currentRoundText.innerHTML = `Round: ${round}`;
+        currentRoundText.innerHTML = `Round: ${round} of ${roundMax}`;
     }
-}
-else
-{
-    // Display results in a window
-    // player wins
-    if(playerTotalPoints < cpuTotalPoints)
+    // TO get rid of issue where text shows round 4 of 3
+    else if(round == 3)
     {
-        alert("Aw, you lost. Best luck next time. Press roll dice to play again, or quit to return to menu");
-    }
-    else if(playerTotalPoints == cpuTotalPoints)
-    {
-        alert("Wow, what are the chances of a tie? Press roll dice to play again, or quit to return to menu");
+        rolldice();
+        round++;
     }
     else
     {
-        alert("Congrats, you won! Press roll dice to play again, or quit to return to menu");
-    }
-
-    btnRollDice.onclick= function()
-    {
-        newgame();
-        currentRoundText.innerHTML = `Round: ${round}`;
+        // Display results in a window
+        // player wins
+        if(playerTotalPoints < cpuTotalPoints)
+        {
+            alert("Aw, you lost. Best luck next time. Press roll dice to play again, or quit to return to menu");
+        }
+        else if(playerTotalPoints == cpuTotalPoints)
+        {
+            alert("Wow, what are the chances of a tie? Press roll dice to play again, or quit to return to menu");
+        }
+        else
+        {
+            alert("Congrats, you won! Press ok to play again, or quit to return to menu");
+        }
+        // Start a new game
+        newGame();
     }
 }
-
 
 
 // functions for rolling the dice
@@ -76,6 +84,9 @@ function rolldice()
     // Player dice roll
     dice1Value = getRandomIntInclusive(1, 6);
     dice2Value = getRandomIntInclusive(1, 6);
+
+    // Update player dice image
+    updatePlayerDiceImage(dice1Value, dice2Value);
 
     // Calculate player points
     if(dice1Value == 1 || dice2Value == 1)
@@ -99,6 +110,9 @@ function rolldice()
     // cpu dice roll
     dice1Value = getRandomIntInclusive(1, 6);
     dice2Value = getRandomIntInclusive(1, 6);
+
+    // Update cpu dice image
+    updateCpuDiceImage(dice1Value, dice2Value);
 
     // Calculate cpu points
     if(dice1Value == 1 || dice2Value == 1)
@@ -138,6 +152,8 @@ function newGame()
     cpuRoundPoints = 0;
     cpuTotalPoints = 0;
     round = 1;
+
+    currentRoundText.innerHTML = `Round: ${round} of ${roundMax}`;
 }
 
 // function used to get a random value from min to max 
@@ -147,4 +163,128 @@ function getRandomIntInclusive(min, max)
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+}
+
+// Update the image of the dice to show the value the player's dice rolled
+function updatePlayerDiceImage(dice1, dice2)
+{
+    // parameter type validation
+    if( typeof dice1 != "number" )
+    {
+        //invalid argument passed
+        console.log("This function requires a numeric parameter");
+        return;
+    }
+    else if(typeof dice2 != "number" )
+    {
+        //invalid argument passed
+        console.log("This function requires a numeric parameter");
+        return;
+    }
+
+   
+    switch(dice1)
+    {
+        case 1:
+            playerDiceImage1.src = "images/diceValue1.jpg";
+            break;
+        case 2:
+            playerDiceImage1.src = "images/diceValue2.jpg";
+            break;
+        case 3:
+            playerDiceImage1.src = "images/diceValue3.jpg";
+            break;
+        case 4:
+            playerDiceImage1.src = "images/diceValue4.jpg";
+            break;
+        case 5:
+            playerDiceImage1.src = "images/diceValue5.jpg";
+            break;
+        case 6:
+            playerDiceImage1.src = "images/diceValue6.jpg";
+            break;
+    }
+
+    switch(dice2)
+    {
+        case 1:
+            playerDiceImage2.src = "images/diceValue1.jpg";
+            break;
+        case 2:
+            playerDiceImage2.src = "images/diceValue2.jpg";
+            break;
+        case 3:
+            playerDiceImage2.src = "images/diceValue3.jpg";
+            break;
+        case 4:
+            playerDiceImage2.src = "images/diceValue4.jpg";
+            break;
+        case 5:
+            playerDiceImage2.src = "images/diceValue5.jpg";
+            break;
+        case 6:
+            playerDiceImage2.src = "images/diceValue6.jpg";
+            break;
+    }
+}
+
+function updateCpuDiceImage(dice1, dice2)
+{
+    // parameter type validation
+    if( typeof dice1 != "number" )
+    {
+        //invalid argument passed
+        console.log("This function requires a numeric parameter");
+        return;
+    }
+    else if(typeof dice2 != "number" )
+    {
+        //invalid argument passed
+        console.log("This function requires a numeric parameter");
+        return;
+    }
+
+    switch(dice1)
+    {
+        case 1:
+            cpuDiceImage1.src = "images/diceValue1.jpg";
+            break;
+        case 2:
+            cpuDiceImage1.src = "images/diceValue2.jpg";
+            break;
+        case 3:
+            cpuDiceImage1.src = "images/diceValue3.jpg";
+            break;
+        case 4:
+            cpuDiceImage1.src = "images/diceValue4.jpg";
+            break;
+        case 5:
+            cpuDiceImage1.src = "images/diceValue5.jpg";
+            break;
+        case 6:
+            cpuDiceImage1.src = "images/diceValue6.jpg";
+            break;
+    }
+
+    switch(dice2)
+    {
+        case 1:
+            cpuDiceImage2.src = "images/diceValue1.jpg";
+            break;
+        case 2:
+            cpuDiceImage2.src = "images/diceValue2.jpg";
+            break;
+        case 3:
+            cpuDiceImage2.src = "images/diceValue3.jpg";
+            break;
+        case 4:
+            cpuDiceImage2.src = "images/diceValue4.jpg";
+            break;
+        case 5:
+            cpuDiceImage2.src = "images/diceValue5.jpg";
+            break;
+        case 6:
+            cpuDiceImage2.src = "images/diceValue6.jpg";
+            break;
+    }
 }
